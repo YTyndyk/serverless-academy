@@ -18,12 +18,15 @@ export const sortByQuantity = async (costumerAnswer) => {
 	return data;
 };
 
-// export const showUniqueWords = async (costumerAnswer) => {
-// 	const data = await costumerAnswer.filter(
-// 		(value, index) => costumerAnswer.indexOf(value) === index,
-// 	);
-// 	return data;
-// };
+export const showUniqueWords = async (costumerAnswer) => {
+	const uniqueWords = {};
+	costumerAnswer.forEach((word) => {
+		const lowerCaseWord = word.toLowerCase().trim();
+		uniqueWords[lowerCaseWord] = true;
+	});
+
+	return Object.keys(uniqueWords);
+};
 
 export default {
 	sortByName,
