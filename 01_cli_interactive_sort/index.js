@@ -18,8 +18,16 @@ export const sortByQuantity = async (costumerAnswer) => {
 	return data;
 };
 export const showUniqueWords = async (customerAnswer) => {
-	const uniqueWords = customerAnswer.filter((item) => isNaN(item));
+	const uniqueWords = [];
+	function isNumeric(value) {
+		return /^\d+$/.test(value);
+	}
 
+	for (let item of customerAnswer) {
+		if (!isNumeric(item) && !uniqueWords.includes(item)) {
+			uniqueWords.push(item);
+		}
+	}
 	return uniqueWords;
 };
 
