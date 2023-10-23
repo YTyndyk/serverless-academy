@@ -20,24 +20,32 @@ export const sortByQuantity = async (costumerAnswer) => {
 function isNumeric(value) {
 	return /^\d+$/.test(value);
 }
+
 export const showUniqueWords = async (customerAnswer) => {
 	const uniqueWords = [];
 	for (let item of customerAnswer) {
-		if (!isNumeric(item) && !uniqueWords.includes(item)) {
-			uniqueWords.push(item);
+		const trimmedItem = item.trim();
+		if (
+			!uniqueWords.includes(trimmedItem) &&
+			!isNumeric(trimmedItem) &&
+			trimmedItem.trim() !== ""
+		) {
+			uniqueWords.push(trimmedItem);
 		}
 	}
 	return uniqueWords;
 };
+
 export const showUniqueValues = async (customerAnswer) => {
 	const uniqueValues = [];
 	const uniqueNumbers = [];
 	const uniqueWords = [];
 	for (let item of customerAnswer) {
-		if (isNumeric(item) && !uniqueNumbers.includes(item)) {
-			uniqueNumbers.push(item);
-		} else if (!isNumeric(item) && !uniqueWords.includes(item)) {
-			uniqueWords.push(item);
+		const trimmedItem = item.trim();
+		if (isNumeric(trimmedItem) && !uniqueNumbers.includes(trimmedItem)) {
+			uniqueNumbers.push(trimmedItem);
+		} else if (!isNumeric(trimmedItem) && !uniqueWords.includes(trimmedItem)) {
+			uniqueWords.push(trimmedItem);
 		}
 	}
 	uniqueValues.push(...uniqueWords, ...uniqueNumbers);
