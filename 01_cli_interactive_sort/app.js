@@ -43,6 +43,10 @@ const invokeAction = async () => {
 			const uniqueWords = await service.showUniqueWords(costumerAnswer);
 			console.log(uniqueWords);
 			break;
+		case "6":
+			const uniqueValues = await service.showUniqueValues(costumerAnswer);
+			console.log(uniqueValues);
+			break;
 		case "exit":
 			rl.close();
 			console.log("Good bye! Come back again!");

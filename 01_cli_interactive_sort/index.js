@@ -17,12 +17,11 @@ export const sortByQuantity = async (costumerAnswer) => {
 	const data = await costumerAnswer.sort((a, b) => a.length - b.length);
 	return data;
 };
+function isNumeric(value) {
+	return /^\d+$/.test(value);
+}
 export const showUniqueWords = async (customerAnswer) => {
 	const uniqueWords = [];
-	function isNumeric(value) {
-		return /^\d+$/.test(value);
-	}
-
 	for (let item of customerAnswer) {
 		if (!isNumeric(item) && !uniqueWords.includes(item)) {
 			uniqueWords.push(item);
@@ -30,11 +29,25 @@ export const showUniqueWords = async (customerAnswer) => {
 	}
 	return uniqueWords;
 };
-
+export const showUniqueValues = async (customerAnswer) => {
+	const uniqueValues = [];
+	const uniqueNumbers = [];
+	const uniqueWords = [];
+	for (let item of customerAnswer) {
+		if (isNumeric(item) && !uniqueNumbers.includes(item)) {
+			uniqueNumbers.push(item);
+		} else if (!isNumeric(item) && !uniqueWords.includes(item)) {
+			uniqueWords.push(item);
+		}
+	}
+	uniqueValues.push(...uniqueWords, ...uniqueNumbers);
+	return uniqueValues;
+};
 export default {
 	sortByName,
 	digitsFromSmallest,
 	digitsFromBiggest,
 	sortByQuantity,
 	showUniqueWords,
+	showUniqueValues,
 };
