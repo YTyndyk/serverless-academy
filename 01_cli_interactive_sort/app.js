@@ -16,7 +16,7 @@ const askQuestion = async () => {
 	console.log(
 		"How would you like to sort values:\n1. Words by name (from A to Z).\n2. Show digits from the smallest.\n3. Show digits from the biggest.\n4. Words by quantity of letters.\n5. Only unique words.",
 	);
-	const action = await rl.question("Select (1 - 5) and press ENTER: ");
+	const action = await rl.question("Select (1 - 6) and press ENTER: ");
 	return { action };
 };
 
