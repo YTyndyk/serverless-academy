@@ -17,15 +17,10 @@ export const sortByQuantity = async (costumerAnswer) => {
 	const data = await costumerAnswer.sort((a, b) => a.length - b.length);
 	return data;
 };
+export const showUniqueWords = async (customerAnswer) => {
+	const uniqueWords = customerAnswer.filter((item) => isNaN(item));
 
-export const showUniqueWords = async (costumerAnswer) => {
-	const uniqueWords = {};
-	costumerAnswer.forEach((word) => {
-		const lowerCaseWord = word.toLowerCase().trim();
-		uniqueWords[lowerCaseWord] = true;
-	});
-
-	return Object.keys(uniqueWords);
+	return uniqueWords;
 };
 
 export default {
