@@ -25,7 +25,11 @@ export const showUniqueWords = async (customerAnswer) => {
 	const uniqueWords = [];
 	for (let item of customerAnswer) {
 		const trimmedItem = item.trim();
-		if (!uniqueWords.includes(trimmedItem) && !isNumeric(trimmedItem)) {
+		if (
+			trimmedItem !== "" &&
+			!uniqueWords.includes(trimmedItem) &&
+			!isNumeric(trimmedItem)
+		) {
 			uniqueWords.push(trimmedItem);
 		}
 	}
