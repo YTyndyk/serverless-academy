@@ -1,26 +1,40 @@
 import inquirer from "inquirer";
 
-inquirer
-	.prompt([
-		{
-			type: "input",
-			name: "nikname",
-			message: "Enter the user's name. To cansel press ENTER:",
-			default: "Iron Man",
+const questions = [
+	{
+		type: "input",
+		name: "name",
+		message: "Enter the user's name. To cansel press ENTER:",
+		validate: (answer) => {
+			if (answer === "") {
+				return "please enter your name";
+			}
+			return true;
 		},
-		{
-			type: "list",
-			name: "list question",
-			message: "Choose your Gender.",
-			default: "I am not sure",
+	},
+	{
+		type: "list",
+		name: "Gender",
+		message: "Choose your Gender.",
+		choices: ["male", "female"],
+	},
+	{
+		type: "input",
+		name: "age",
+		message: "Enter your age:",
+		validate: (answer) => {
+			if (isNaN(answer) || answer === "") {
+				return "please enter your age";
+			}
+			return true;
 		},
-		{
-			type: "input",
-			name: "age",
-			message: "Enter your age:",
-			default: "18+",
-		},
-	])
-	.then((answers) => {
-		// Use user feedback for... whatever!!
-	});
+	},
+	{
+		type: "confirm",
+		name: "confirmation",
+		message: "Would you to search values in DB?",
+	},
+];
+inquirer.prompt(questions).then((answers) => {
+	console.log(answers);
+});
